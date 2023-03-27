@@ -1,6 +1,9 @@
 <?php
+// import functions
+require_once "functions/makeApiCall.php";
 
 $errors = array("firstName" => "", "title" => "");
+$messages = array("success" => "", "error" => "");
 $firstName = '';
 $title = '';
 
@@ -18,6 +21,20 @@ if (isset($_POST["submit"])) {
         $errors["firstName"] = "A first name must be at least 2 characters long";
     } else if ( preg_match("/[0-9]+/", $_POST["firstName"])) {
         $errors["firstName"] = "A first name must only contain letters";
+    }
+
+    // change title to all lowercase for inclusion in the api call
+    $title = strtolower($title);
+
+    if ( array_filter($errors)) {
+        //echo errors in form
+    } else {
+        try {
+            makeApiCall($title, $firstName);
+            $messages["success"] = "The API call was made successfully";
+        } catch (Exception $e) {
+            $messages["error"] = "There was an error making the API call";
+        }
     }
 }
 ?>
@@ -49,5 +66,10 @@ if (isset($_POST["submit"])) {
     <br>
     <input type="submit" name="submit" value="submit">
 </form>
+<div>
+    <div><?php echo $messages["success"]; ?></div>
+    <div><?php echo $messages["error"]; ?></div>
+    <p></p>
+</div>
 </body>
 </html>
