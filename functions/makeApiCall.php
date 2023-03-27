@@ -3,6 +3,8 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 
+require_once "makeBodyJson.php";
+
 function makeApiCall($userTitle, $userFirstName){
     $client = new GuzzleHttp\Client(['base_uri' => 'http://httpbin.org/response-headers']);
 
@@ -10,16 +12,15 @@ function makeApiCall($userTitle, $userFirstName){
         'Content-Type' => 'application/json'
     ];
 
-    $body = '{"id": 3}';
+    $body = makeBodyJson($userTitle, $userFirstName);
 
     $request = new Request('POST', '', $headers, $body);
     $res = $client->sendAsync($request)->wait();
 
     if($res->getBody()) {
-        var_dump('i did it');
 
     } else {
-        throw new Exception("api call was unsuccessul");
+        throw new Exception("api call was unsuccessful");
     }
     return;
 }
