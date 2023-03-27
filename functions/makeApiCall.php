@@ -6,7 +6,7 @@ use GuzzleHttp\Psr7\Request;
 require_once "makeBodyJson.php";
 
 function makeApiCall($userTitle, $userFirstName){
-    $client = new GuzzleHttp\Client(['base_uri' => 'http://httpbin.org/response-headers']);
+    $client = new GuzzleHttp\Client(['base_uri' => 'https://leads.supadata.co.uk/submit-lead']);
 
     $headers = [
         'Content-Type' => 'application/json'
