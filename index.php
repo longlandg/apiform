@@ -1,6 +1,8 @@
 <?php
 
 $errors = array("firstName" => "", "title" => "");
+$firstName = '';
+$title = '';
 
 if (isset($_POST["submit"])) {
     $title = $_POST["title"];
@@ -32,17 +34,17 @@ if (isset($_POST["submit"])) {
     <label for="title">Title</label>
     <br>
     <select id="title" name="title" class="form-control">
-        <option value="">Select title</option>
-        <option value="Mr">Mr</option>
-        <option value="Mrs">Mrs</option>
-        <option value="Miss">Miss</option>
-        <option value="Ms">Ms</option>
-        <option value="Dr">Dr</option>
+        <option <?php if ($title == "") echo "selected"; ?> value="">Select title</option>
+        <option <?php if ($title == "Mr") echo "selected"; ?> value="Mr">Mr</option>
+        <option <?php if ($title == "Mrs") echo "selected"; ?> value="Mrs">Mrs</option>
+        <option <?php if ($title == "Miss") echo "selected"; ?> value="Miss">Miss</option>
+        <option <?php if ($title == "Ms") echo "selected"; ?> value="Ms">Ms</option>
+        <option <?php if ($title == "Dr") echo "selected"; ?> value="Dr">Dr</option>
     </select>
     <div><?php echo $errors["title"]?></div>
     <label for="firstName">First Name</label>
     <br>
-    <input type="text" id="firstName" name="firstName" class="form-control">
+    <input type="text" id="firstName" name="firstName" class="form-control" value="<?php echo htmlspecialchars($firstName)?>">
     <div><?php echo $errors["firstName"]?></div>
     <br>
     <input type="submit" name="submit" value="submit">
