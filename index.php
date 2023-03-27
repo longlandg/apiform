@@ -1,6 +1,8 @@
 <?php
 // import functions
+
 require_once "functions/makeApiCall.php";
+require 'vendor/autoload.php';
 
 $errors = array("firstName" => "", "title" => "");
 $messages = array("success" => "", "error" => "");
