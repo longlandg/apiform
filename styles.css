@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+}
+.red-text {
+    color: firebrick;
+}
+
+.green-text {
+    color: yellowgreen;
+}
